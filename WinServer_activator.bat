@@ -33,21 +33,22 @@ set /p choice=Select Your Operating System to Continue.
 :loop
 
 set "productKey="
+set "edition="
 
 rem Windows Server 2022
-if %choice%==1 set productKey=VDYBN-27WPP-V4HQT-9VMD4-VMK7H
-if %choice%==2 set productKey=WX4NM-KYWYW-QJJR4-XV3QB-6VM33 
+if %choice%==1 set productKey=VDYBN-27WPP-V4HQT-9VMD4-VMK7H set edition=ServerStandard
+if %choice%==2 set productKey=WX4NM-KYWYW-QJJR4-XV3QB-6VM33 set edition=ServerDatacenter
 rem Windows Server 2019
-if %choice%==3 set productKey=WMDGN-G9PQG-XVVXX-R3X43-63DFG
-if %choice%==4 set productKey=N69G4-B89J2-4G8F4-WWYCC-J464C 
-if %choice%==5 set productKey=WVDHN-86M7X-466P6-VHXV7-YY726 
+if %choice%==3 set productKey=WMDGN-G9PQG-XVVXX-R3X43-63DFG set edition=ServerDatacenter
+if %choice%==4 set productKey=N69G4-B89J2-4G8F4-WWYCC-J464C set edition=ServerStandard
+if %choice%==5 set productKey=WVDHN-86M7X-466P6-VHXV7-YY726 set edition=ServerStandard
 rem Windows Server 2016
-if %choice%==6 set productKey=CB7KF-BWN84-R7R2Y-793K2-8XDDG 
-if %choice%==7 set productKey=WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY 
-if %choice%==8 set productKey=JCKRF-N37P4-C2D82-9YXRT-4M63B 
+if %choice%==6 set productKey=CB7KF-BWN84-R7R2Y-793K2-8XDDG set edition=ServerDatacenter
+if %choice%==7 set productKey=WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY set edition=ServerStandard
+if %choice%==8 set productKey=JCKRF-N37P4-C2D82-9YXRT-4M63B set edition=ServerStandard
 rem Windows Server, versions 20H2, 2004, 1909, 1903, and 1809
-if %choice%==9 set productKey=6NMRW-2C8FM-D24W7-TQWMY-CWH2D
-if %choice%==10 set productKey=N2KJX-J94YW-TQVFB-DG9YT-724CC
+if %choice%==9 set productKey=6NMRW-2C8FM-D24W7-TQWMY-CWH2D set edition=ServerDatacenter
+if %choice%==10 set productKey=N2KJX-J94YW-TQVFB-DG9YT-724CC set edition=ServerStandard
 if %choice%==11 goto end
 
 if "%productKey%"=="" (
@@ -63,7 +64,7 @@ set eval=
 set /p eval=Is this currently on an Eval License (Y/n)?
 
 if "%eval%"=="Y" or "%eval%" =="y" (
-    Dism /online /Set-Edition:ServerStandard /ProductKey:%productKey% /AcceptEula
+    Dism /online /Set-Edition:%edition% /ProductKey:%productKey% /AcceptEula
 	goto end
 )
 
